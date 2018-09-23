@@ -27,3 +27,8 @@ class MyTestCase(unittest.TestCase):
                           'platform', 'site','sys_path'],
                          sorted(os.listdir(out_dir)))
 
+    def test_normalize_line__magic(self):
+        os.environ['env_name_x']='/home/bar'
+        self.assertEqual(
+            '${env_name_x}/y',
+            dumpenv.normalize_line__magic('/home/bar/y', 'env_name_x'))

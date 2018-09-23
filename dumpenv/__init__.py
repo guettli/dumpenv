@@ -32,8 +32,22 @@ def dump_data(env_data):
     out_dir = tempfile.mkdtemp(prefix='dumpenv_%s_' % name_of_environment())
     for key, lines in env_data.items():
         with open(os.path.join(out_dir, key), 'wt') as fd:
-            fd.write('\n'.join(lines))
+            for line in lines:
+                fd.write('%s\n' % normalize_line(line))
     return out_dir
+
+def normalize_line(line):
+    line=normalize_line__magic(line, 'VIRTUAL_ENV')
+    line=normalize_line__magic(line, 'HOME')
+    return line
+
+def normalize_line__magic(line, env_name):
+    magic = os.environ.get(env_name)
+    if not magic:
+        return line
+    if env_name in line:
+        return line
+    return line.replace(magic, '${%s}' % env_name)
 
 def dict_to_lines(my_dict):
     return ['%s: %r' % (key, value) for key, value in sorted(my_dict.items())]

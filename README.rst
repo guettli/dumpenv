@@ -35,6 +35,7 @@ Above files get created in a temporary directory which roughly looks like this::
 
     /tmp/dumpenv_{USER}@{HOST}--{VIRTUAL_ENV}_RANDOM
 
+To make the diff easier to read $VIRTUAL_ENV and $HOME get replaced in the output.
 
 Feedback welcome, please create an issue at github.
 
