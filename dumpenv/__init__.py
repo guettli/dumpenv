@@ -17,6 +17,7 @@ def create_data_and_dump_it():
     env_data = dict(
         os=os_module(),
         os_environ=os_environ(),
+        sys=sys_module(),
         sys_path=sys.path,
         PATH=os.environ.get('PATH', '').split(os.pathsep),
         pip_freeze=pip_freeze(),
@@ -63,7 +64,7 @@ def site_module():
             for attr in ['PREFIXES', 'ENABLE_USER_SITE', 'USER_SITE', 'USER_BASE']]
 
 def platform_module():
-    return ['%s: %s' % (func, getattr(platform, func)()) for func in
+    return ['%s(): %s' % (func, getattr(platform, func)()) for func in
                         ['architecture', 'machine', 'node', 'platform', 'processor',
                          'python_build',
                  'python_compiler', 'python_branch', 'python_implementation',
@@ -77,7 +78,7 @@ def os_module():
         'getpgrp', 'getresuid', 'getresgid', 'getuid',
     ]:
         try:
-            values.append('%s: %s' % (func, getattr(os, func)()))
+            values.append('%s(): %s' % (func, getattr(os, func)()))
         except OSError as exc:
             values.append('%s: [%s]' % (func, exc))
     values.append('umask: %s' % oct(get_umask()))
@@ -87,6 +88,23 @@ def get_umask():
     current_value = os.umask(0)
     os.umask(current_value)
     return current_value
+
+def sys_module():
+    values = []
+    for attr in [
+        'argv', 'byteorder', 'exec_prefix', 'executable', 'flags', 'float_info',
+        'maxint', 'maxsize', 'maxunicode', 'meta_path', 'py3kwarning',
+    ]:
+        values.append('%s: %s' % (attr, getattr(sys, attr)))
+    for func in [
+        'getcheckinterval', 'getdefaultencoding', 'getfilesystemencoding',
+        'getrecursionlimit', 'getwindowsversion',
+    ]:
+        values.append('%s(): %s' % (attr, getattr(sys, attr)))
+
+
+
+    return values
 
 if __name__=='__main__':
     main()

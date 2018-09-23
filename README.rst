@@ -27,6 +27,7 @@ At the moment these text files get created:
 * pip_freeze
 * platform
 * site
+* sys
 * sys_path
 
 I guess the above names do not need any explanation.

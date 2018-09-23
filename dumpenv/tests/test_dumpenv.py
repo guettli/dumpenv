@@ -24,7 +24,7 @@ class MyTestCase(unittest.TestCase):
 
         # EXTEND README IF A NEW FILE GETS CREATED
         self.assertEqual(['PATH', 'os', 'os_environ', 'pip_freeze',
-                          'platform', 'site','sys_path'],
+                          'platform', 'site', 'sys', 'sys_path'],
                          sorted(os.listdir(out_dir)))
 
     def test_normalize_line__magic(self):
