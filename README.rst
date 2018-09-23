@@ -55,6 +55,12 @@ Usage::
 
 ... Ah! Now you see the difference :-)
 
+API
+===
+
+Call it from Python like this::
+
+    out_dir = dumpenv.create_data_and_dump_it()
 
 Install
 =======
