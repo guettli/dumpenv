@@ -44,13 +44,13 @@ Usage
 Usage::
 
     user1@host1> dumpenv
-    Dumped environment to OUT1
+    Dumped environment to directory OUT1
 
     user2@host2> dumpenv
-    Dumped environment to OUT2
+    Dumped environment to directory OUT2
 
-    me@pc> scp user1@host1:/tmp/OUT1/ tmp/
-    me@pc> scp user2@host2:/tmp/OUT2/ tmp/
+    me@pc> scp -r user1@host1:/tmp/OUT1/ tmp/
+    me@pc> scp -r user2@host2:/tmp/OUT2/ tmp/
     me@pc> meld tmp/OUT1 tmp/OUT2
 
 ... Ah! Now you see the difference :-)

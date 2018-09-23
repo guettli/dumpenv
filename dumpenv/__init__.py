@@ -11,7 +11,7 @@ import subx
 
 def main():
     out_dir = create_data_and_dump_it()
-    print('Dumped environment to %s' % out_dir)
+    print('Dumped environment to directory %s' % out_dir)
 
 def create_data_and_dump_it():
     env_data = dict(
