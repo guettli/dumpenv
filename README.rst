@@ -37,7 +37,6 @@ Above files get created in a temporary directory which roughly looks like this::
 
 To make the diff easier to read $VIRTUAL_ENV and $HOME get replaced in the output.
 
-Feedback welcome, please create an issue at github.
 
 Usage
 =====
@@ -75,3 +74,27 @@ Use case 2: Your code works via web (wsgi, django, ...) but it fails if you call
 
 Use case 3: Your code works in the development environment, but not on the production server.
 
+Dream
+=====
+
+In my case Python scripts run in different environments:
+
+* called from PyCharm
+* called from Shell
+* called from Cron
+* called from wsgi/Django.
+* called from subprocess
+
+My dream is that the environment from all above calls is equal.
+
+Advertisment
+============
+
+* Created roughly according my own `programming guidelines <https://github.com/guettli/programming-guidelines>`_
+* Uses `subx <https://github.com/guettli/subx>`_ instead of subprocess
+* Uses my `github commit, travis CI, bumpversion, Upload to pypi <https://github.com/guettli/github-travis-bumpversion-pypi>`_ recipe
+
+Feedback
+========
+
+Feedback is very welcome, please create an issue at github or write me an email.
