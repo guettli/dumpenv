@@ -1,0 +1,76 @@
+.. image:: https://travis-ci.org/guettli/dumpenv.svg?branch=master
+    :target: https://travis-ci.org/guettli/dumpenv
+    
+dumpenv: Dump values of the current Python environment
+======================================================
+
+
+https://github.com/guettli/dumpenv
+
+Why?
+====
+
+Sometimes source code works in one environment,
+but in a different environment it fails.
+
+Same source code, but different results .... Hmm, there must be a differenence in the environment .... but what?
+
+You can use this tool to dump a lot of values which influence the python interpreter.
+
+Then you can use any diff tool (I like `meld <http://meldmerge.org/>`_) to compare both environments.
+
+At the moment these text files get created:
+
+* PATH
+* os
+* os_environ
+* pip_freeze
+* platform
+* site
+* sys_path
+
+I guess the above names do not need any explanation.
+
+Above files get created in a temporary directory which roughly looks like this::
+
+    /tmp/dumpenv_{USER}@{HOST}--{VIRTUAL_ENV}_RANDOM
+
+
+Feedback welcome, please create an issue at github.
+
+Usage
+=====
+
+Usage::
+
+    user1@host1> dumpenv
+    Dumped environment to OUT1
+
+    user2@host2> dumpenv
+    Dumped environment to OUT2
+
+    me@pc> scp user1@host1:/tmp/OUT1/ tmp/
+    me@pc> scp user2@host2:/tmp/OUT2/ tmp/
+    me@pc> meld tmp/OUT1 tmp/OUT2
+
+... Ah! Now you see the difference :-)
+
+
+Install
+=======
+
+Install from `pypi <https://pypi.python.org/pypi/dumpenv/>`_::
+
+    pip install dumpenv
+
+
+Use Cases
+=========
+
+Use case 1: Your script works, but it does not, if called via unix cron. Run `dumpenv` via shell
+and via cron and compare the result.
+
+Use case 2: Your code works via web (wsgi, django, ...) but it fails if you call it on the shell.
+
+Use case 3: Your code works in the development environment, but not on the production server.
+
