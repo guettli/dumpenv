@@ -36,7 +36,7 @@ def dump_data(env_data):
     return out_dir
 
 def dict_to_lines(my_dict):
-    return ['%s: %s' % (key, value) for key, value in sorted(my_dict.items())]
+    return ['%s: %r' % (key, value) for key, value in sorted(my_dict.items())]
 
 def os_environ():
     return dict_to_lines(os.environ)
