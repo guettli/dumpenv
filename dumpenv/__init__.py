@@ -64,7 +64,7 @@ def os_module():
         try:
             values.append('%s: %s' % (func, getattr(os, func)()))
         except OSError as exc:
-            values.append('%s: [%s]' % exc)
+            values.append('%s: [%s]' % (func, exc))
     values.append('umask: %s' % get_umask())
     return values
 
