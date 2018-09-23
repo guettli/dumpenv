@@ -56,10 +56,15 @@ def platform_module():
 
 
 def os_module():
-    values = ['%s: %s' % (func, getattr(os, func)()) for func in [
+    values = []
+    for func in [
         'getcwd', 'getegid', 'geteuid', 'getgid', 'getgroups', 'getlogin',
         'getpgrp', 'getresuid', 'getresgid', 'getuid',
-    ]]
+    ]:
+        try:
+            values.append('%s: %s' % (func, getattr(os, func)()))
+        except OSError as exc:
+            values.append('%s: [%s]' % exc)
     values.append('umask: %s' % get_umask())
     return values
 
