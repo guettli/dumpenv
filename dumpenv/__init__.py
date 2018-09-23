@@ -98,9 +98,9 @@ def sys_module():
         values.append('%s: %s' % (attr, getattr(sys, attr)))
     for func in [
         'getcheckinterval', 'getdefaultencoding', 'getfilesystemencoding',
-        'getrecursionlimit', 'getwindowsversion',
+        'getrecursionlimit',
     ]:
-        values.append('%s(): %s' % (attr, getattr(sys, attr)))
+        values.append('%s(): %s' % (func, getattr(sys, func)()))
 
 
 
