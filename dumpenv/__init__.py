@@ -2,6 +2,7 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 
 import os
 import platform
+import pwd
 import sys
 import tempfile
 
@@ -25,7 +26,7 @@ def create_data_and_dump_it():
     return dump_data(env_data)
 
 def name_of_environment():
-    return '%s@%s--%s' % (os.getlogin(), platform.node(),
+    return '%s@%s--%s' % (pwd.getpwuid(os.geteuid()).pw_name, platform.node(),
                           os.path.basename(os.environ.get('VIRTUAL_ENV', '')))
 def dump_data(env_data):
     out_dir = tempfile.mkdtemp(prefix='dumpenv_%s_' % name_of_environment())
