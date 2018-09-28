@@ -6,3 +6,4 @@ dist
 *.pyo
 *.swp
 *~
+.pytest_cache

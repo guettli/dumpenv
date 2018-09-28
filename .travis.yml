@@ -14,7 +14,7 @@ after_success:
 - ssh-add travis_deploy_key
 - git config --global push.default simple
 - git remote add deploy $(git remote -v | sed -nre 's#^origin.*https://([^/]*)/([^
-  ]*) *.*push.*#git@\1:\2#p')
+    ]*) *.*push.*#git@\1:\2#p')
 - git push deploy HEAD:master
 - python setup.py sdist
 - pip install twine

@@ -42,7 +42,22 @@ To make the diff easier to read $VIRTUAL_ENV and $HOME get replaced in the outpu
 Usage
 =====
 
+
 Usage::
+
+    dumpenv [-o OUTPUT_DIRECTORY | --output-directory=OUTPUT_DIRECTORY]
+    dumpenv (-h | --help)
+
+Options::
+
+    -o --output-directory OUTPUT_DIRECTORY Create text file in this directory.
+                                         Or use environment variable DUMPENV_OUTPUT_DIRECTORY
+
+
+Example
+=======
+
+Example::
 
     user1@host1> dumpenv
     Dumped environment to directory OUT1

@@ -1,10 +1,10 @@
-import setuptools
-from setuptools import setup, find_packages
 from codecs import open
 from os import path
 
-here = path.abspath(path.dirname(__file__))
+import setuptools
+from setuptools import setup
 
+here = path.abspath(path.dirname(__file__))
 
 # Get the long description from the README file
 with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
@@ -41,13 +41,12 @@ setup(
         # Pick your license as you wish (should match "license" above)
         'License :: OSI Approved :: Apache Software License',
 
-
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 3',
     ],
-    install_requires=['subx'],
+    install_requires=['subx', 'docopt'],
     packages=setuptools.find_packages(),
 
     entry_points={
