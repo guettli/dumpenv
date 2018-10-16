@@ -124,7 +124,7 @@ def os_module():
     ]:
         try:
             values.append('%s(): %s' % (func, getattr(os, func)()))
-        except OSError as exc:
+        except (OSError, AttributeError) as exc:
             values.append('%s: [%s]' % (func, exc))
     values.append('umask: %s' % oct(get_umask()))
     return values
@@ -147,8 +147,10 @@ def sys_module():
         'getcheckinterval', 'getdefaultencoding', 'getfilesystemencoding',
         'getrecursionlimit',
     ]:
-        values.append('%s(): %s' % (func, getattr(sys, func)()))
-
+        try:
+            values.append('%s(): %s' % (func, getattr(sys, func)()))
+        except (OSError, AttributeError) as exc:
+            values.append('%s(): [%s]' % (func, exc))
     return values
 
 
