@@ -131,6 +131,7 @@ def os_module():
 
 
 def get_umask():
+    # https://stackoverflow.com/questions/53227072/reading-umask-thread-safe
     current_value = os.umask(0)
     os.umask(current_value)
     return current_value
