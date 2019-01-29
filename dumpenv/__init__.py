@@ -56,6 +56,7 @@ def create_data_and_dump_it(output_directory):
         sys=sys_module(),
         sys_path=sys.path,
         PATH=os.environ.get('PATH', '').split(os.pathsep),
+        PYTHONPATH=os.environ.get('PYTHONPATH', '').split(os.pathsep),
         pip_freeze=pip_freeze(),
         site=site_module(),
         platform=platform_module(),
