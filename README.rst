@@ -22,6 +22,7 @@ Then you can use any diff tool (I like `meld <http://meldmerge.org/>`_) to compa
 At the moment these text files get created:
 
 * PATH
+* PYTHONPATH
 * os
 * os_environ
 * pip_freeze
