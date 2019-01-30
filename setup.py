@@ -15,7 +15,7 @@ setup(
 
     # Updated via travisd: https://travis-ci.org/guettli/dumpenv
     # See .travis.yml
-    version='2018.13.0',
+    version='2018.14.0',
 
     description='dumpenv: Dump values of the current Python environment',
     long_description=long_description,
