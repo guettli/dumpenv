@@ -18,7 +18,7 @@ class MyTestCase(unittest.TestCase):
         out_dir = dumpenv.create_data_and_dump_it(output_directory)
 
         # EXTEND README IF A NEW FILE GETS CREATED
-        self.assertEqual(['PATH', 'os', 'os_environ', 'pip_freeze',
+        self.assertEqual(['PATH', 'PYTHONPATH', 'os', 'os_environ', 'pip_freeze',
                           'platform', 'site', 'sys', 'sys_path'],
                          sorted(os.listdir(out_dir)))
 
