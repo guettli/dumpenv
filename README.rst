@@ -108,6 +108,8 @@ In my case Python scripts run in different environments:
 * called from webserver
 * called from subprocess
 * called from configuration management (for example Ansible)
+* called from systemd
+* ...
 
 My dream is that the environment from all above calls is equal.
 
