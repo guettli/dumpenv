@@ -105,10 +105,13 @@ In my case Python scripts run in different environments:
 * called from PyCharm
 * called from Shell
 * called from Cron
-* called from wsgi/Django.
+* called from webserver
 * called from subprocess
+* called from configuration management (for example Ansible)
 
 My dream is that the environment from all above calls is equal.
+
+I think this dream will never come true. I think it is better to reduce the above list.
 
 Advertisment
 ============
