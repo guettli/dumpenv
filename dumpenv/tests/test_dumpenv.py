@@ -41,3 +41,6 @@ class MyTestCase(unittest.TestCase):
         env = dict(os.environ)
         env['DUMPENV_OUTPUT_DIRECTORY'] = out_dir
         self.assertIn('Dumped environment to directory %s' % out_dir, subx.call(['dumpenv'], env=env).stdout)
+
+    def test_normalize_line__object_at_memory(self):
+        self.assertEqual('meta_path: [<six._SixMetaPathImporter object at 0x...>]', dumpenv.normalize_line('meta_path: [<six._SixMetaPathImporter object at 0x7f8840eb0d10>]'))

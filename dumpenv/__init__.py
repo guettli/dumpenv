@@ -20,6 +20,7 @@ Options:
 from __future__ import absolute_import, division, print_function, unicode_literals
 
 import os
+import re
 import platform
 import pwd
 import sys
@@ -80,8 +81,11 @@ def dump_data(env_data, output_directory):
 def normalize_line(line):
     line = normalize_line__magic(line, 'VIRTUAL_ENV')
     line = normalize_line__magic(line, 'HOME')
+    line = normalize_line_object_at_memory(line)
     return line
 
+def normalize_line_object_at_memory(line):
+    return re.sub('object at 0x[0-9abcdef]+>', r'object at 0x...>', line)
 
 def normalize_line__magic(line, env_name):
     magic = os.environ.get(env_name)
