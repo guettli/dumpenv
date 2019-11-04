@@ -18,7 +18,7 @@ class MyTestCase(unittest.TestCase):
         out_dir = dumpenv.create_data_and_dump_it(output_directory)
 
         # EXTEND README IF A NEW FILE GETS CREATED
-        self.assertEqual(['PATH', 'PYTHONPATH', 'os', 'os_environ', 'pip_freeze',
+        self.assertEqual(['PATH', 'PYTHONPATH', 'locale_module', 'localeconv','os', 'os_environ', 'pip_freeze',
                           'platform', 'site', 'sys', 'sys_path'],
                          sorted(os.listdir(out_dir)))
 
@@ -44,3 +44,12 @@ class MyTestCase(unittest.TestCase):
 
     def test_normalize_line__object_at_memory(self):
         self.assertEqual('meta_path: [<six._SixMetaPathImporter object at 0x...>]', dumpenv.normalize_line('meta_path: [<six._SixMetaPathImporter object at 0x7f8840eb0d10>]'))
+
+    def test_localeconv_module(self):
+        localeconv = '\n'.join(dumpenv.localeconv())
+        self.assertIn('currency_symbol:', localeconv)
+        self.assertIn('decimal_point:', localeconv)
+
+    def test_locale_module(self):
+        locale_output = '\n'.join(dumpenv.locale_module())
+        self.assertIn('getdefaultlocale():', locale_output)

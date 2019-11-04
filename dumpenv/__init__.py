@@ -19,6 +19,7 @@ Options:
 """
 from __future__ import absolute_import, division, print_function, unicode_literals
 
+import locale
 import os
 import re
 import platform
@@ -61,6 +62,8 @@ def create_data_and_dump_it(output_directory):
         pip_freeze=pip_freeze(),
         site=site_module(),
         platform=platform_module(),
+        localeconv=localeconv(),
+        locale_module=locale_module(),
     )
     return dump_data(env_data, output_directory)
 
@@ -74,7 +77,11 @@ def dump_data(env_data, output_directory):
     for key, lines in env_data.items():
         with open(os.path.join(output_directory, key), 'wt') as fd:
             for line in lines:
-                fd.write('%s\n' % normalize_line(line))
+                line = normalize_line(line)
+                try:
+                    fd.write('%s\n' % line)
+                except UnicodeError as exc:
+                    raise UnicodeError('%s in %r' % (exc, line))
     return output_directory
 
 
@@ -159,6 +166,23 @@ def sys_module():
             values.append('%s(): [%s]' % (func, exc))
     return values
 
+def localeconv():
+    values = []
+    for key, value in sorted(locale.localeconv().items()):
+        if isinstance(value, bytes):
+            value = value.decode('ascii', errors='replace')
+        if key=='currency_symbol':
+            value = repr(value)
+        values.append('%s: %s' % (key, value))
+    return values
+
+def locale_module():
+    values=[]
+    values.append('getdefaultlocale(): {}'.format(locale.getdefaultlocale()))
+    for category in ['LC_CTYPE', 'LC_COLLATE', 'LC_TIME', 'LC_MONETARY', 'LC_MESSAGES',
+        'LC_NUMERIC']:
+        values.append('getlocale(locale.{}): {}'.format(category, locale.getlocale(getattr(locale, category))))
+    return values
 
 if __name__ == '__main__':
     main()
