@@ -51,7 +51,9 @@ def get_output_directory(args={}):
     return tempfile.mkdtemp(prefix='dumpenv_%s_' % name_of_environment())
 
 
-def create_data_and_dump_it(output_directory):
+def create_data_and_dump_it(output_directory=None):
+    if not output_directory:
+        output_directory = get_output_directory()
     env_data = dict(
         os=os_module(),
         os_environ=os_environ(),

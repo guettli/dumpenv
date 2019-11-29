@@ -23,6 +23,7 @@ At the moment these text files get created:
 
 * PATH
 * PYTHONPATH
+* locale
 * os
 * os_environ
 * pip_freeze
